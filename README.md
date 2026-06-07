@@ -67,3 +67,9 @@ The project includes a robust test suite covering logic, math, and UI states. To
 ```bash
 pytest test_main.py
 ```
+
+## 💖 Support
+
+This tool is entirely free and open-source. However, if it saved your campaign, saved you printer ink, or just made your DM prep a little easier, consider supporting my work!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Azhariel)
