@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pdf
+*.jpg
+*.png
+*.webp
