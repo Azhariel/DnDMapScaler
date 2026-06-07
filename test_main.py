@@ -2,7 +2,8 @@ import sys
 import pytest
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
-from main import MainWindow, PAPER_SIZES
+from main_window import MainWindow
+from constants import PAPER_SIZES
 
 @pytest.fixture(scope="session")
 def app():
