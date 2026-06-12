@@ -59,6 +59,14 @@ class MainWindow(QMainWindow):
         
         export_group = QGroupBox("Export Features")
         export_layout = QVBoxLayout()
+        
+        self.scaler_label = QLabel("Scaling Method:")
+        self.scaler_combo = QComboBox()
+        self.scaler_combo.addItems(["Lanczos (Smooth)", "Nearest (Pixel Art)"])
+        self.scaler_combo.currentTextChanged.connect(self.on_setting_changed)
+        export_layout.addWidget(self.scaler_label)
+        export_layout.addWidget(self.scaler_combo)
+        
         self.skip_white_cb = QCheckBox("Skip Empty/White Pages")
         self.skip_white_cb.setChecked(True)
         self.cut_marks_cb = QCheckBox("Draw Cut Marks")
@@ -205,7 +213,8 @@ class MainWindow(QMainWindow):
             draw_cut_marks=self.cut_marks_cb.isChecked(),
             draw_grid=self.grid_cb.isChecked(),
             grid_type=self.grid_type_combo.currentText(),
-            grid_opacity=self.grid_opacity_slider.value()
+            grid_opacity=self.grid_opacity_slider.value(),
+            scaler_method=self.scaler_combo.currentText()
         )
         
         try:

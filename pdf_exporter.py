@@ -15,6 +15,7 @@ class ExportConfig:
     draw_grid: bool
     grid_type: str
     grid_opacity: int
+    scaler_method: str = "Lanczos (Smooth)"
 
 def calculate_tiling(image_width, image_height, reference_pixels, real_size_cm, paper_w_cm, paper_h_cm, margin_cm, overlap_cm):
     if reference_pixels <= 0 or real_size_cm <= 0:
@@ -104,7 +105,12 @@ def export_to_pdf(config: ExportConfig, math_data: dict, status_callback=None):
             target_w_px = max(1, target_w_px)
             target_h_px = max(1, target_h_px)
             
-            chunk = chunk.resize((target_w_px, target_h_px), Image.Resampling.LANCZOS)
+            if config.scaler_method == "Nearest (Pixel Art)":
+                resampling_method = Image.Resampling.NEAREST
+            else:
+                resampling_method = Image.Resampling.LANCZOS
+                
+            chunk = chunk.resize((target_w_px, target_h_px), resampling_method)
             
             if config.draw_grid:
                 overlay = Image.new("RGBA", chunk.size, (0, 0, 0, 0))
